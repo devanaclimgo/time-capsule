@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SparkleTitle } from "./components/sparkle-title";
+import "./index.css"
 
 export default function LandingPage() {
   return (
