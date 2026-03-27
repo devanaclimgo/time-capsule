@@ -1,13 +1,13 @@
 module Users
-  class Users::RegistrationsController < Devise::RegistrationsController
+  class RegistrationsController < Devise::RegistrationsController
     respond_to :json
+
+    before_action :configure_sign_up_params, only: [:create]
 
     private
 
     def sign_up(resource_name, resource)
-      # Don't sign in the user after sign up
-      # This is important to prevent the JWT from being dispatched immediately after registration
-      # and allows the client to handle the login process separately if needed.
+      # não loga automaticamente
     end
 
     def respond_with(resource, _opts = {})
@@ -22,8 +22,6 @@ module Users
         }, status: :unprocessable_entity
       end
     end
-
-    before_action :configure_sign_up_params, only: [:create]
 
     protected
 
