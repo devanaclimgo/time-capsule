@@ -13,7 +13,7 @@ export default function LoginPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Redirect to dashboard for demo
-    window.location.href = "/painel";
+    window.location.href = "/dashboard";
   };
 
   return (
