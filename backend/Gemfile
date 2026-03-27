@@ -50,5 +50,6 @@ group :development, :test do
 end
 
 gem "devise", "~> 5.0"
+gem "devise-jwt"
 
 gem "letter_opener", "~> 1.10"
