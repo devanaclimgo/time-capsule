@@ -1,0 +1,69 @@
+import { Lock, Clock, Send } from "lucide-react"
+
+type LetterStatus = "locked" | "scheduled" | "sent"
+
+interface LetterCardProps {
+  id: string
+  writtenDate: string
+  deliveryDate: string
+  status: LetterStatus
+  preview: string
+}
+
+const statusConfig = {
+  locked: {
+    label: "Lacrada",
+    icon: Lock,
+    className: "bg-accent/20 text-accent",
+  },
+  scheduled: {
+    label: "Agendada",
+    icon: Clock,
+    className: "bg-muted text-muted-foreground",
+  },
+  sent: {
+    label: "Entregue",
+    icon: Send,
+    className: "bg-primary/10 text-foreground",
+  },
+}
+
+export function LetterCard({
+  writtenDate,
+  deliveryDate,
+  status,
+  preview,
+}: LetterCardProps) {
+  const config = statusConfig[status]
+  const StatusIcon = config.icon
+
+  return (
+    <article className="group relative bg-card border border-border rounded-md p-6 shadow-sm hover:shadow-md transition-shadow">
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/30 via-accent/50 to-accent/30 rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity" />
+      
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+        <div className="space-y-3 flex-1">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            <span>
+              <span className="font-medium">Escrita:</span> {writtenDate}
+            </span>
+            <span>
+              <span className="font-medium">Entrega:</span> {deliveryDate}
+            </span>
+          </div>
+          
+          <p className="text-foreground line-clamp-2 leading-relaxed">
+            {preview}
+          </p>
+        </div>
+
+        <div
+          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${config.className}`}
+        >
+          <StatusIcon className="w-4 h-4" />
+          {config.label}
+        </div>
+      </div>
+    </article>
+  )
+}
