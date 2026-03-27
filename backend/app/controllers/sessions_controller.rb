@@ -1,13 +1,11 @@
 module Users
-  class Users::SessionsController < Devise::SessionsController
+  class SessionsController < Devise::SessionsController
     respond_to :json
 
     private
 
     def respond_to_on_destroy
-      render json: {
-        message: 'Logged out successfully'
-      }, status: :ok
+      render json: { message: 'Logged out successfully' }, status: :ok
     end
 
     def respond_with(resource, _opts = {})
@@ -18,7 +16,7 @@ module Users
         }, status: :ok
       else
         render json: {
-          error: 'Invalid email/username or password'
+          error: 'Invalid email or password'
         }, status: :unauthorized
       end
     end
