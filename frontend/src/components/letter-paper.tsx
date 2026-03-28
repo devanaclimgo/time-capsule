@@ -110,7 +110,7 @@ export function LetterPaper({ letterData, setLetterData, isSealed }: LetterPaper
         {/* Sealed stamp overlay */}
         {isSealed && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="bg-accent/90 text-accent-foreground px-8 py-4 rounded-full font-serif text-2xl font-bold transform -rotate-12 shadow-lg">
+            <div className="bg-red-900 border border-red-400 text-white px-8 py-4 rounded-full font-serif text-2xl font-bold transform -rotate-12 shadow-lg ">
               LACRADA
             </div>
           </div>
