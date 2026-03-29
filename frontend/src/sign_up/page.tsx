@@ -31,7 +31,7 @@ export default function SignUpPage() {
       alert("Erro ao criar conta");
       return;
     }
-    const loginRes = await fetch("http://localhost:3000/users/login", {
+    const loginRes = await fetch("http://localhost:3000/users/sign_in", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
