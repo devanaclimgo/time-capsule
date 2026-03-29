@@ -84,3 +84,43 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 12ms (Views: 4.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/users/login" for ::1 at 2026-03-29 13:59:59 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+  
+ActionController::RoutingError (No route matches [POST] "/users/login"):
+  
+Started GET "/letters" for ::1 at 2026-03-29 13:59:59 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 4ms (ActiveRecord: 35.5ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 14:00:00 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:00:00 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 44ms (Views: 0.1ms | ActiveRecord: 27.4ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:00:00 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/letters" for ::1 at 2026-03-29 14:00:24 -0300
+Processing by LettersController#create as */*
+  Parameters: {"letter" => {"content" => "vai dar certo amg", "sender" => "eu", "recipient" => "eu depois", "deliver_at" => "2026-03-30"}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:00:24 -0300
+Processing by Users::SessionsController#new as */*
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
