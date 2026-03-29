@@ -9,7 +9,7 @@ class Letter < ApplicationRecord
   private
 
   def set_readable_at
-    self.readable_at = deliver_at
+    self.readable_at ||= deliver_at
   end
 
   def deliver_at_must_be_in_future
