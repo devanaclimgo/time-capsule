@@ -9,16 +9,10 @@ module Users
     end
 
     def respond_with(resource, _opts = {})
-      if resource.persisted?
-        render json: {
-          message: 'Logged in successfully',
-          user: resource
-        }, status: :ok
-      else
-        render json: {
-          error: 'Invalid email or password'
-        }, status: :unauthorized
-      end
+      render json: {
+        message: 'Logged in successfully',
+        user: resource
+      }, status: :ok
     end
   end
 end

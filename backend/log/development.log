@@ -172,3 +172,204 @@ Processing by Users::SessionsController#new as */*
 Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/users" for ::1 at 2026-03-29 14:12:42 -0300
+Processing by Users::RegistrationsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "registration" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mUser Create (32.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('anaclimgo@gmail.com', '$2a$12$tvFuns8nDY7xU7Cd4uK0Mu8oy6TEB79VM5VoUuddWLbFzncM/Y8le', NULL, NULL, NULL, '2026-03-29 17:12:42.375612', '2026-03-29 17:12:42.375612') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[31mROLLBACK /*action='create',application='Backend',controller='registrations'*/[0m
+Completed 500 Internal Server Error in 304ms (ActiveRecord: 39.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_users_on_email"
+DETAIL:  Key (email)=(anaclimgo@gmail.com) already exists.
+)
+Caused by: PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_users_on_email"
+DETAIL:  Key (email)=(anaclimgo@gmail.com) already exists.
+)
+
+Information for: ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_users_on_email"
+DETAIL:  Key (email)=(anaclimgo@gmail.com) already exists.
+):
+  
+
+Information for cause: PG::UniqueViolation (ERROR:  duplicate key value violates unique constraint "index_users_on_email"
+DETAIL:  Key (email)=(anaclimgo@gmail.com) already exists.
+):
+  
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/database_statements.rb:167:in 'PG::Connection#exec'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/database_statements.rb:167:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::DatabaseStatements#perform_query'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:571:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::DatabaseStatements#raw_execute'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1086:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:570:in 'block in ActiveRecord::ConnectionAdapters::DatabaseStatements#raw_execute'
+activesupport (8.1.3) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract_adapter.rb:1206:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#log'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:569:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#raw_execute'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:613:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#internal_execute'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:555:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#internal_exec_query'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:162:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#exec_insert'
+activerecord (8.1.3) lib/active_record/connection_adapters/postgresql/database_statements.rb:47:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::DatabaseStatements#exec_insert'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:200:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#insert'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/query_cache.rb:25:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#insert'
+activerecord (8.1.3) lib/active_record/persistence.rb:257:in 'ActiveRecord::Persistence::ClassMethods#_insert_record'
+activerecord (8.1.3) lib/active_record/persistence.rb:957:in 'block in ActiveRecord::Persistence#_create_record'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:457:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/connection_handling.rb:313:in 'ActiveRecord::ConnectionHandling#with_connection'
+activerecord (8.1.3) lib/active_record/persistence.rb:954:in 'ActiveRecord::Persistence#_create_record'
+activerecord (8.1.3) lib/active_record/counter_cache.rb:226:in 'ActiveRecord::CounterCache#_create_record'
+activerecord (8.1.3) lib/active_record/locking/optimistic.rb:84:in 'ActiveRecord::Locking::Optimistic#_create_record'
+activerecord (8.1.3) lib/active_record/encryption/encryptable_record.rb:184:in 'ActiveRecord::Encryption::EncryptableRecord#_create_record'
+activerecord (8.1.3) lib/active_record/attribute_methods/dirty.rb:240:in 'ActiveRecord::AttributeMethods::Dirty#_create_record'
+activerecord (8.1.3) lib/active_record/callbacks.rb:445:in 'block in ActiveRecord::Callbacks#_create_record'
+activesupport (8.1.3) lib/active_support/callbacks.rb:911:in 'ActiveRecord::Base#_run_create_callbacks'
+activerecord (8.1.3) lib/active_record/callbacks.rb:445:in 'ActiveRecord::Callbacks#_create_record'
+activerecord (8.1.3) lib/active_record/timestamp.rb:116:in 'ActiveRecord::Timestamp#_create_record'
+activerecord (8.1.3) lib/active_record/persistence.rb:925:in 'ActiveRecord::Persistence#create_or_update'
+activerecord (8.1.3) lib/active_record/callbacks.rb:441:in 'block in ActiveRecord::Callbacks#create_or_update'
+activesupport (8.1.3) lib/active_support/callbacks.rb:911:in 'ActiveRecord::Base#_run_save_callbacks'
+activerecord (8.1.3) lib/active_record/callbacks.rb:441:in 'ActiveRecord::Callbacks#create_or_update'
+activerecord (8.1.3) lib/active_record/timestamp.rb:127:in 'ActiveRecord::Timestamp#create_or_update'
+activerecord (8.1.3) lib/active_record/persistence.rb:391:in 'ActiveRecord::Persistence#save'
+activerecord (8.1.3) lib/active_record/validations.rb:48:in 'ActiveRecord::Validations#save'
+activerecord (8.1.3) lib/active_record/transactions.rb:381:in 'block in ActiveRecord::Transactions#save'
+activerecord (8.1.3) lib/active_record/transactions.rb:438:in 'block (3 levels) in ActiveRecord::Transactions#with_transaction_returning_status'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/transaction.rb:648:in 'block in ActiveRecord::ConnectionAdapters::TransactionManager#within_new_transaction'
+activesupport (8.1.3) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/transaction.rb:645:in 'ActiveRecord::ConnectionAdapters::TransactionManager#within_new_transaction'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:386:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#within_new_transaction'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/database_statements.rb:378:in 'ActiveRecord::ConnectionAdapters::DatabaseStatements#transaction'
+activerecord (8.1.3) lib/active_record/transactions.rb:434:in 'block (2 levels) in ActiveRecord::Transactions#with_transaction_returning_status'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:485:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_pool_transaction_isolation_level'
+activerecord (8.1.3) lib/active_record/transactions.rb:430:in 'block in ActiveRecord::Transactions#with_transaction_returning_status'
+activerecord (8.1.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.3) lib/active_record/connection_handling.rb:313:in 'ActiveRecord::ConnectionHandling#with_connection'
+activerecord (8.1.3) lib/active_record/transactions.rb:429:in 'ActiveRecord::Transactions#with_transaction_returning_status'
+activerecord (8.1.3) lib/active_record/transactions.rb:381:in 'ActiveRecord::Transactions#save'
+activerecord (8.1.3) lib/active_record/suppressor.rb:52:in 'ActiveRecord::Suppressor#save'
+devise (5.0.3) app/controllers/devise/registrations_controller.rb:19:in 'Devise::RegistrationsController#create'
+actionpack (8.1.3) lib/action_controller/metal/basic_implicit_render.rb:8:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.1.3) lib/abstract_controller/base.rb:221:in 'AbstractController::Base#process_action'
+actionpack (8.1.3) lib/action_controller/metal/rendering.rb:199:in 'ActionController::Rendering#process_action'
+actionpack (8.1.3) lib/abstract_controller/callbacks.rb:267:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.1.3) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.3) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.3) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.3) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.3) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.3) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.3) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.3) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.3) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.3) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionpack (8.1.3) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.3) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.3) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.3) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.3) lib/action_dispatch/routing/mapper.rb:32:in 'block in <class:Constraints>'
+actionpack (8.1.3) lib/action_dispatch/routing/mapper.rb:62:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (8.1.3) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.3) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.3) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.3) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.3) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+warden-jwt_auth (0.12.0) lib/warden/jwt_auth/middleware/token_dispatcher.rb:20:in 'Warden::JWTAuth::Middleware::TokenDispatcher#call'
+warden-jwt_auth (0.12.0) lib/warden/jwt_auth/middleware/revocation_manager.rb:21:in 'Warden::JWTAuth::Middleware::RevocationManager#call'
+rack (3.2.5) lib/rack/builder.rb:283:in 'Rack::Builder#call'
+warden-jwt_auth (0.12.0) lib/warden/jwt_auth/middleware.rb:22:in 'Warden::JWTAuth::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+warden (1.2.9) lib/warden/manager.rb:36:in 'block in Warden::Manager#call'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Kernel#catch'
+warden (1.2.9) lib/warden/manager.rb:34:in 'Warden::Manager#call'
+rack (3.2.5) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.5) lib/rack/conditional_get.rb:44:in 'Rack::ConditionalGet#call'
+rack (3.2.5) lib/rack/head.rb:15:in 'Rack::Head#call'
+activerecord (8.1.3) lib/active_record/migration.rb:671:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.3) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.3) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.3) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.3) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.5) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.3) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.5) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.3) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+rack-cors (3.0.0) lib/rack/cors.rb:102:in 'Rack::Cors#call'
+railties (8.1.3) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+Started POST "/users" for ::1 at 2026-03-29 14:16:34 -0300
+Processing by Users::RegistrationsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "registration" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mUser Create (17.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('anateste@gmail.com', '$2a$12$lomwgwa3iQKMMwdZRGkpOutDqbDVTHgNM9r/sq/L4vyunnUbkqNba', NULL, NULL, NULL, '2026-03-29 17:16:34.442922', '2026-03-29 17:16:34.442922') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='registrations'*/[0m
+Completed 200 OK in 303ms (Views: 0.3ms | ActiveRecord: 23.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-03-29 14:16:34 -0300
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "session" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anateste@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/models/user.rb:17:in 'User.find_for_database_authentication'
+Completed 200 OK in 264ms (Views: 0.3ms | ActiveRecord: 4.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 14:16:35 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 14:16:35 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:16:35 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:16:35 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/letters" for ::1 at 2026-03-29 14:17:11 -0300
+Processing by LettersController#create as */*
+  Parameters: {"letter" => {"content" => "partiu emprego", "sender" => "eu", "recipient" => "eu depois", "deliver_at" => "2026-03-30"}}
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:17:11 -0300
+Processing by Users::SessionsController#new as */*
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
