@@ -5,6 +5,8 @@ class LettersController < ApplicationController
   def index
     letters = current_user.letters.order(created_at: :desc)
 
+    Rails.logger.info letters.inspect
+
     render json: letters.map { |letter|
       {
         id: letter.id,
