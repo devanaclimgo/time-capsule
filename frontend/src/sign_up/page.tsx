@@ -1,21 +1,57 @@
-"use client"
+"use client";
 
-import {Link} from "react-router-dom"
-import { useState } from "react"
-import { ArrowLeft, Mail, Lock, User } from "lucide-react"
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { ArrowLeft, Mail, Lock, User } from "lucide-react";
 
 export default function SignUpPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-  })
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Redirect to dashboard for demo
-    window.location.href = "/dashboard"
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: formData.email,
+          password: formData.password,
+        },
+      }),
+    });
+
+    if (!res.ok) {
+      alert("Erro ao criar conta");
+      return;
+    }
+    const loginRes = await fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: formData.email,
+          password: formData.password,
+        },
+      }),
+    });
+
+    const token = loginRes.headers.get("Authorization");
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
+
+    window.location.href = "/dashboard";
+  };
 
   return (
     <main className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
@@ -47,7 +83,9 @@ export default function SignUpPage() {
               <input
                 type="text"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
                 placeholder="Seu nome"
                 className="w-full bg-card border border-border rounded-md py-3 pl-11 pr-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
               />
@@ -63,7 +101,9 @@ export default function SignUpPage() {
               <input
                 type="email"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 placeholder="seu@email.com"
                 className="w-full bg-card border border-border rounded-md py-3 pl-11 pr-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
               />
@@ -79,7 +119,9 @@ export default function SignUpPage() {
               <input
                 type="password"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
                 placeholder="••••••••"
                 className="w-full bg-card border border-border rounded-md py-3 pl-11 pr-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent/50 transition-all"
               />
@@ -96,11 +138,14 @@ export default function SignUpPage() {
 
         <p className="text-center text-muted-foreground mt-6">
           Já tem uma conta?{" "}
-          <Link to="/login" className="text-foreground underline hover:no-underline">
+          <Link
+            to="/login"
+            className="text-foreground underline hover:no-underline"
+          >
             Entrar
           </Link>
         </p>
       </div>
     </main>
-  )
+  );
 }
