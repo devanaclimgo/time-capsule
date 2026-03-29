@@ -7,7 +7,8 @@ module Users
     def respond_with(resource, _opts = {})
       render json: {
         message: 'Logged in successfully',
-        user: resource
+        user: resource,
+        token: token
       }, status: :ok
     end
   end

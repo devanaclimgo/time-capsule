@@ -898,3 +898,47 @@ Filter chain halted as :authenticate_user! rendered or redirected
 Completed 401 Unauthorized in 7ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/users/sign_in" for ::1 at 2026-03-29 18:00:17 -0300
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "session" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/models/user.rb:19:in 'User.find_for_database_authentication'
+Completed 200 OK in 308ms (Views: 0.5ms | ActiveRecord: 28.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 18:00:17 -0300
+Processing by LettersController#index as JSON
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 18:00:17 -0300
+Processing by LettersController#index as JSON
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-03-29 18:00:59 -0300
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "session" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/models/user.rb:19:in 'User.find_for_database_authentication'
+Completed 200 OK in 273ms (Views: 0.4ms | ActiveRecord: 2.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 18:00:59 -0300
+Processing by LettersController#index as JSON
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 18:00:59 -0300
+Processing by LettersController#index as JSON
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
