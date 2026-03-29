@@ -124,3 +124,51 @@ Processing by Users::SessionsController#new as */*
 Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/users" for ::1 at 2026-03-29 14:08:00 -0300
+Processing by Users::RegistrationsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "registration" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mUser Create (7.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES ('anaclimgo@gmail.com', '$2a$12$3laGV64IubTX8tK1zB2Jpe.lO4rRsrAhXXGwNhGbhv4h47gSx0O/i', NULL, NULL, NULL, '2026-03-29 17:08:01.066668', '2026-03-29 17:08:01.066668') RETURNING "id" /*action='create',application='Backend',controller='registrations'*/[0m
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT /*action='create',application='Backend',controller='registrations'*/[0m
+Completed 200 OK in 328ms (Views: 0.6ms | ActiveRecord: 33.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/login" for ::1 at 2026-03-29 14:08:01 -0300
+  
+ActionController::RoutingError (No route matches [POST] "/users/login"):
+  
+Started GET "/letters" for ::1 at 2026-03-29 14:08:01 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 14:08:01 -0300
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:08:01 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:08:01 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 401 Unauthorized in 0ms (Views: 0.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/letters" for ::1 at 2026-03-29 14:08:25 -0300
+Processing by LettersController#create as */*
+  Parameters: {"letter" => {"content" => "vai dar certo amg", "sender" => "eu", "recipient" => "eu depois", "deliver_at" => "2026-03-30"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 14:08:25 -0300
+Processing by Users::SessionsController#new as */*
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
