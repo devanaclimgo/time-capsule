@@ -833,3 +833,68 @@ Processing by LettersController#create as */*
 Completed 422 Unprocessable Content in 46ms (Views: 0.7ms | ActiveRecord: 21.1ms (1 query, 0 cached) | GC: 0.0ms)
 
 
+Started POST "/users/sign_in" for ::1 at 2026-03-29 17:51:05 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "session" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/models/user.rb:19:in 'User.find_for_database_authentication'
+Completed 200 OK in 292ms (Views: 0.3ms | ActiveRecord: 19.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:05 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 1.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:05 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:21 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:21 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2026-03-29 17:51:33 -0300
+Processing by Users::SessionsController#create as */*
+  Parameters: {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}, "session" => {"user" => {"email" => "[FILTERED]", "password" => "[FILTERED]"}}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'anaclimgo@gmail.com' ORDER BY "users"."id" ASC LIMIT 1 /*action='create',application='Backend',controller='sessions'*/[0m
+  ↳ app/models/user.rb:19:in 'User.find_for_database_authentication'
+Completed 200 OK in 281ms (Views: 0.4ms | ActiveRecord: 1.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:33 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:51:33 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:56:00 -0300
+Processing by LettersController#index as HTML
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 1.4ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

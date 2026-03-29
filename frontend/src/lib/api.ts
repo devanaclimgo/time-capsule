@@ -5,6 +5,7 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     ...options,
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
       Authorization: token ? `Bearer ${token}` : "",
       ...(options.headers || {}),
     },
@@ -12,14 +13,15 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
 
   const data = await res.json();
 
-  if (!res.ok) {
-    throw data; 
-  }
-
   if (res.status === 401) {
     localStorage.removeItem("token");
     window.location.href = "/login";
+    return;
   }
 
-  return res.json();
+  if (!res.ok) {
+    throw data;
+  }
+
+  return data;
 }
