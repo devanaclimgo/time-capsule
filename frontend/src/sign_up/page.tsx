@@ -44,11 +44,10 @@ export default function SignUpPage() {
       }),
     });
 
-    const token = loginRes.headers.get("Authorization");
+    const rawToken = loginRes.headers.get("Authorization");
+    const token = rawToken?.split(" ")[1];
 
-    if (token) {
-      localStorage.setItem("token", token);
-    }
+    localStorage.setItem("token", token || "");
 
     window.location.href = "/dashboard";
   };

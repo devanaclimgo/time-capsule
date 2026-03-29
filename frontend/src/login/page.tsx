@@ -32,11 +32,10 @@ export default function LoginPage() {
       return;
     }
 
-    const token = res.headers.get("Authorization");
+    const rawToken = res.headers.get("Authorization");
+    const token = rawToken?.split(" ")[1];
 
-    if (token) {
-      localStorage.setItem("token", token);
-    }
+    localStorage.setItem("token", token || "");
 
     navigate("/dashboard");
   };
