@@ -10,8 +10,10 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     },
   });
 
+  const data = await res.json();
+
   if (!res.ok) {
-    throw new Error("Erro na API");
+    throw data; 
   }
 
   if (res.status === 401) {
