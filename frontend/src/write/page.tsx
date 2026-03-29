@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft, Stamp } from "lucide-react";
 import { LetterPaper } from "../components/letter-paper";
 import { apiFetch } from "../lib/api";
+import { toast } from "sonner";
 
 export default function WriteLetterPage() {
   const [isSealed, setIsSealed] = useState(false);
@@ -19,19 +20,29 @@ export default function WriteLetterPage() {
   const handleSeal = async () => {
     if (!letterData.content || !letterData.deliveryDate) return;
 
-    await apiFetch("/letters", {
-      method: "POST",
-      body: JSON.stringify({
-        letter: {
-          content: letterData.content,
-          sender: letterData.from,
-          recipient: letterData.to,
-          deliver_at: letterData.deliveryDate,
-        },
-      }),
-    });
+    try {
+      await apiFetch("/letters", {
+        method: "POST",
+        body: JSON.stringify({
+          letter: {
+            content: letterData.content,
+            sender: letterData.from,
+            recipient: letterData.to,
+            deliver_at: letterData.deliveryDate,
+          },
+        }),
+      });
 
-    setIsSealed(true);
+      toast.success("Carta criada com sucesso 💌");
+      setIsSealed(true);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.errors) {
+        toast.error(error.errors[0]);
+      } else {
+        toast.error("Erro inesperado");
+      }
+    }
   };
 
   return (
