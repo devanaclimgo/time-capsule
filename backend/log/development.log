@@ -414,3 +414,125 @@ Processing by Users::SessionsController#new as */*
 Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/letters" for ::1 at 2026-03-29 17:07:53 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Backend'*/[0m
+Processing by LettersController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:07:53 -0300
+Processing by Users::SessionsController#new as HTML
+Completed 200 OK in 28ms (Views: 0.2ms | ActiveRecord: 11.6ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/favicon.ico" for ::1 at 2026-03-29 17:07:54 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/letters" for ::1 at 2026-03-29 17:08:10 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 2.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:08:10 -0300
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:08:10 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:08:10 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/letters" for ::1 at 2026-03-29 17:08:30 -0300
+Processing by LettersController#create as */*
+  Parameters: {"letter" => {"content" => "partiu emprego na gringa", "sender" => "eu", "recipient" => "eu depois", "deliver_at" => "2026-03-30"}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:08:30 -0300
+Processing by Users::SessionsController#new as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:08:34 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:08:34 -0300
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:08:34 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:08:34 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:10:12 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:10:12 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:10:12 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:10:12 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:12:52 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 327.8ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:12:52 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:12:52 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 2.4ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2026-03-29 17:12:52 -0300
+Processing by Users::SessionsController#new as */*
+  Parameters: {"session" => {}}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

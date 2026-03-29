@@ -83,9 +83,11 @@ Devise.setup do |config|
   # ==> Hotwire/Turbo configuration
   config.responder.error_status = :unprocessable_content
   config.responder.redirect_status = :see_other
+
+  config.navigational_formats = []
   
   config.jwt do |jwt|
-    jwt.secret = Rails.application.secret_key_base
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key
 
     jwt.dispatch_requests = [
       ['POST', %r{^/users/sign_in$}]
