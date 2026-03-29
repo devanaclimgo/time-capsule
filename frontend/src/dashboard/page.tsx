@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { apiFetch } from "../lib/api";
 import { type Letter } from "../types/letter";
 import { mapLetter } from "../lib/mappers";
+import type { ApiLetter } from "../types/api";
 
 export default function DashboardPage() {
   const [letters, setLetters] = useState<Letter[]>([]);
@@ -12,7 +13,7 @@ export default function DashboardPage() {
   useEffect(() => {
     async function loadLetters() {
       try {
-        const data = await apiFetch("/letters");
+        const data: ApiLetter[] = await apiFetch("/letters");
         console.log("LETTERS RESPONSE:", data);
 
         if (!Array.isArray(data)) {

@@ -536,3 +536,17 @@ Processing by Users::SessionsController#new as */*
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/letters" for ::1 at 2026-03-29 17:18:30 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/letters" for ::1 at 2026-03-29 17:18:30 -0300
+Processing by LettersController#index as */*
+  Parameters: {"letter" => {}}
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
