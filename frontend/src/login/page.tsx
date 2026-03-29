@@ -1,19 +1,37 @@
 "use client";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ArrowLeft, Mail, Lock } from "lucide-react";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to dashboard for demo
-    window.location.href = "/dashboard";
+
+    const res = await fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: formData.email,
+          password: formData.password,
+        },
+      }),
+    });
+
+    const token = res.headers.get("Authorization")?.split(" ")[1];
+
+    localStorage.setItem("token", token || "");
+
+    navigate("/dashboard");
   };
 
   return (
