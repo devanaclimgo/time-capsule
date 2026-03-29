@@ -1,35 +1,35 @@
 import { Link } from "react-router-dom";
 import { LetterCard } from "../components/letter-card";
 import { PenLine, Mail } from "lucide-react";
-
-const mockLetters = [
-  {
-    id: "1",
-    writtenDate: "15 de Janeiro, 2024",
-    deliveryDate: "15 de Janeiro, 2025",
-    status: "locked" as const,
-    preview: "Querido eu do futuro, espero que você tenha conseguido...",
-  },
-  {
-    id: "2",
-    writtenDate: "20 de Março, 2024",
-    deliveryDate: "20 de Março, 2026",
-    status: "scheduled" as const,
-    preview: "Hoje foi um dia especial. Quero que você se lembre de como...",
-  },
-  {
-    id: "3",
-    writtenDate: "5 de Dezembro, 2023",
-    deliveryDate: "5 de Dezembro, 2024",
-    status: "sent" as const,
-    preview: "Olá! Se você está lendo isso, significa que um ano se passou...",
-  },
-];
+import { useState, useEffect } from "react";
+import { apiFetch } from "../lib/api";
+import { type Letter } from "../types/letter";
+import { mapLetter } from "../lib/mappers";
+import { type ApiLetter } from "../types/api";
 
 export default function DashboardPage() {
+  const [letters, setLetters] = useState<Letter[]>([]);
+
+  useEffect(() => {
+    async function loadLetters() {
+      try {
+        const data: ApiLetter[] = await apiFetch("/letters");
+
+        const mapped = data.map(mapLetter);
+
+        setLetters(mapped);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    loadLetters();
+  }, []);
+
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-12">
+        {/* Header */}
         <header className="mb-12">
           <h1 className="font-serif text-4xl font-bold text-foreground mb-2">
             Suas Cartas
@@ -39,6 +39,7 @@ export default function DashboardPage() {
           </p>
         </header>
 
+        {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-6 mb-12">
           <Link
             to="/write"
@@ -53,21 +54,29 @@ export default function DashboardPage() {
             <div>
               <p className="text-sm text-muted-foreground">Total de cartas</p>
               <p className="text-2xl font-serif font-bold text-foreground">
-                {mockLetters.length}
+                {letters.length}
               </p>
             </div>
           </div>
         </div>
 
+        {/* Letters */}
         <section>
           <h2 className="font-serif text-2xl font-semibold text-foreground mb-6">
             Suas Cartas
           </h2>
+
           <div className="space-y-4">
-            {mockLetters.map((letter) => (
-              <LetterCard key={letter.id} {...letter} />
+            {letters.map((letter) => (
+              <LetterCard key={letter.id} letter={letter} />
             ))}
           </div>
+
+          {letters.length === 0 && (
+            <p className="text-muted-foreground text-center mt-10">
+              Você ainda não tem cartas 💌
+            </p>
+          )}
         </section>
       </div>
     </main>
