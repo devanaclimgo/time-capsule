@@ -14,7 +14,6 @@ export default function DashboardPage() {
     async function loadLetters() {
       try {
         const data: ApiLetter[] = await apiFetch("/letters");
-        console.log("LETTERS RESPONSE:", data);
 
         if (!Array.isArray(data)) {
           console.error("Resposta inválida:", data);
