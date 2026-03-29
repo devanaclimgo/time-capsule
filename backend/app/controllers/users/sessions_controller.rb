@@ -5,11 +5,13 @@ module Users
     private
 
     def respond_with(resource, _opts = {})
-      render json: {
-        message: 'Logged in successfully',
-        user: resource,
-        token: token
-      }, status: :ok
+    token = request.env['warden-jwt_auth.token']
+
+    render json: {
+      message: 'Logged in successfully',
+      user: resource,
+      token: token
+    }, status: :ok
     end
   end
 end
