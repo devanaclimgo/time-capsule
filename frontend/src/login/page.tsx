@@ -27,9 +27,16 @@ export default function LoginPage() {
       }),
     });
 
-    const token = res.headers.get("Authorization")?.split(" ")[1];
+    if (!res.ok) {
+      alert("Erro no login");
+      return;
+    }
 
-    localStorage.setItem("token", token || "");
+    const token = res.headers.get("Authorization");
+
+    if (token) {
+      localStorage.setItem("token", token);
+    }
 
     navigate("/dashboard");
   };
