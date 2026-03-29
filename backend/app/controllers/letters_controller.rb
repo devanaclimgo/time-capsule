@@ -38,6 +38,7 @@ class LettersController < ApplicationController
     if letter.save
       render json: letter, status: :created
     else
+      Rails.logger.debug letter.errors.full_messages
       render json: { errors: letter.errors.full_messages }, status: :unprocessable_entity
     end
   end
