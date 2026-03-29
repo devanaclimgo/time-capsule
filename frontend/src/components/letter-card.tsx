@@ -1,13 +1,8 @@
 import { Lock, Clock, Send } from "lucide-react"
-
-type LetterStatus = "locked" | "scheduled" | "sent"
+import type { Letter } from "../types/letter";
 
 interface LetterCardProps {
-  id: string
-  writtenDate: string
-  deliveryDate: string
-  status: LetterStatus
-  preview: string
+  letter: Letter;
 }
 
 const statusConfig = {
@@ -29,12 +24,9 @@ const statusConfig = {
 }
 
 export function LetterCard({
-  writtenDate,
-  deliveryDate,
-  status,
-  preview,
+ letter,
 }: LetterCardProps) {
-  const config = statusConfig[status]
+  const config = statusConfig[letter.status]
   const StatusIcon = config.icon
 
   return (
@@ -45,15 +37,15 @@ export function LetterCard({
         <div className="space-y-3 flex-1">
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <span>
-              <span className="font-medium">Escrita:</span> {writtenDate}
+              <span className="font-medium">Escrita:</span> {letter.writtenDate}
             </span>
             <span>
-              <span className="font-medium">Entrega:</span> {deliveryDate}
+              <span className="font-medium">Entrega:</span> {letter.deliveryDate}
             </span>
           </div>
           
           <p className="text-foreground line-clamp-2 leading-relaxed">
-            {preview}
+            {letter.preview}
           </p>
         </div>
 
