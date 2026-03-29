@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Stamp } from "lucide-react";
 import { LetterPaper } from "../components/letter-paper";
+import { apiFetch } from "../lib/api";
 
 export default function WriteLetterPage() {
   const [isSealed, setIsSealed] = useState(false);
@@ -15,15 +16,21 @@ export default function WriteLetterPage() {
     content: "",
   });
 
-  const handleSeal = () => {
-    if (
-      !letterData.from ||
-      !letterData.to ||
-      !letterData.deliveryDate ||
-      !letterData.content
-    ) {
-      return;
-    }
+  const handleSeal = async () => {
+    if (!letterData.content || !letterData.deliveryDate) return;
+
+    await apiFetch("/letters", {
+      method: "POST",
+      body: JSON.stringify({
+        letter: {
+          content: letterData.content,
+          sender: letterData.from,
+          recipient: letterData.to,
+          deliver_at: letterData.deliveryDate,
+        },
+      }),
+    });
+
     setIsSealed(true);
   };
 
