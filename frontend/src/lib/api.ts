@@ -14,5 +14,10 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     throw new Error("Erro na API");
   }
 
+  if (res.status === 401) {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
+
   return res.json();
 }
