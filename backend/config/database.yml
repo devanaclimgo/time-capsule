@@ -102,3 +102,4 @@ production:
     <<: *primary_production
     database: time-capsule_production_cable
     migrations_paths: db/cable_migrate
+  url: <%= ENV['DATABASE_URL'] %>
