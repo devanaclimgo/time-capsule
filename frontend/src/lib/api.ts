@@ -13,8 +13,6 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
     },
   });
 
-  const data = await res.json();
-
   if (res.status === 401) {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -22,8 +20,13 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   }
 
   if (!res.ok) {
-    throw data;
+    console.error("Erro na API:", res.status);
+    throw new Error("API error");
   }
+
+  const data = await res.json();
+
+  console.log("API RESPONSE:", data);
 
   return data;
 }
