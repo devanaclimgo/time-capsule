@@ -86,4 +86,6 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
+  config.action_cable.adapter = "async"
 end
