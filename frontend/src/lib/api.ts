@@ -29,10 +29,6 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   }
 
   const data = await res.json();
-  console.log("ENV:", import.meta.env);
-
-  console.log("API RESPONSE:", data);
-  console.log("API URL:", API_URL);
 
   return data;
 }
