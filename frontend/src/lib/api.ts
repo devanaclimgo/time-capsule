@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 export async function apiFetch(path: string, options: RequestInit = {}) {
   const token = localStorage.getItem("token");
 
@@ -24,8 +26,35 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   }
 
   if (!res.ok) {
-    console.error("Erro na API:", res.status);
-    throw new Error("API error");
+    let errorMessage = "Algo deu errado 😢";
+
+    try {
+      const errorData = await res.json();
+
+      if (errorData?.errors) {
+        errorMessage = Object.entries(errorData.errors)
+          .map(([field, messages]) => {
+            const formattedField = field
+              .replace("_", " ")
+              .replace(/^\w/, (c) => c.toUpperCase());
+
+            const msgArray = Array.isArray(messages)
+              ? messages
+              : [messages];
+
+            return `${formattedField}: ${msgArray.join(", ")}`;
+          })
+          .join(" • ");
+      } else if (errorData?.error) {
+        errorMessage = errorData.error;
+      }
+    } catch (e) {
+      console.error("Erro ao parsear resposta:", e);
+    }
+
+    toast.error(errorMessage);
+
+    throw new Error(errorMessage);
   }
 
   const data = await res.json();
