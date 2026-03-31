@@ -2,6 +2,8 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     respond_to :json
 
+    skip_before_action :authenticate_user!, raise: false
+
     before_action :configure_sign_up_params, only: [:create]
 
     private

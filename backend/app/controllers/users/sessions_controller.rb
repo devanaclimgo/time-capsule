@@ -1,6 +1,8 @@
 module Users
   class SessionsController < Devise::SessionsController
     respond_to :json
+    
+    skip_before_action :authenticate_user!, raise: false
 
     private
 
