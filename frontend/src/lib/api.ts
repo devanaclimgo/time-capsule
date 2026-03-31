@@ -1,7 +1,11 @@
 export async function apiFetch(path: string, options: RequestInit = {}) {
   const token = localStorage.getItem("token");
 
-  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  const API_URL =
+    import.meta.env.VITE_API_URL ??
+    (window.location.hostname === "localhost"
+      ? "http://localhost:3000"
+      : "https://time-capsule-back-production.up.railway.app");
 
   const res = await fetch(`${API_URL}${path}`, {
     ...options,
@@ -25,6 +29,7 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   }
 
   const data = await res.json();
+  console.log("ENV:", import.meta.env);
 
   console.log("API RESPONSE:", data);
   console.log("API URL:", API_URL);
