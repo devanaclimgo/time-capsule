@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SparkleTitle } from "../components/sparkle-title";
-import "../index.css"
+import "../index.css";
 
 export default function LandingPage() {
   return (
@@ -28,6 +28,21 @@ export default function LandingPage() {
           </Link>
         </div>
       </div>
+
+      <p className="absolute bottom-4 text-center w-full">
+        <em className="text-sm text-muted-foreground mt-12">
+          Desenvolvido por{" "}
+          <a
+            href="https://github.com/devanaclimgo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            Ana Gomes
+          </a>
+          .
+        </em>
+      </p>
 
       <footer className="absolute bottom-8 text-sm text-muted-foreground">
         Suas cartas, seus segredos, seu futuro.
