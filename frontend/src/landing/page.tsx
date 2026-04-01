@@ -29,7 +29,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <p className="absolute bottom-4 text-center w-full py-4">
+      <p className="absolute bottom-4 text-center w-full">
         <em className="text-[0.6rem] text-muted-foreground mt-12">
           Desenvolvido por{" "}
           <a
@@ -44,7 +44,7 @@ export default function LandingPage() {
         </em>
       </p>
 
-      <footer className="absolute bottom-8 text-sm text-muted-foreground">
+      <footer className="absolute bottom-8 text-sm text-muted-foreground pb-7">
         Suas cartas, seus segredos, seu futuro.
       </footer>
     </main>
