@@ -12,7 +12,8 @@ class LettersController < ApplicationController
         id: letter.id,
         sender: letter.sender,
         recipient: letter.recipient,
-        deliver_at: letter.deliver_at,
+        written_at: letter.created_at.iso8601,
+        deliver_at: letter.deliver_at.iso8601,
         readable_at: letter.readable_at,
         delivered: letter.delivered,
         content: letter.readable_at <= Time.current ? letter.content : nil
@@ -34,6 +35,7 @@ class LettersController < ApplicationController
   # POST /letters
   def create
     letter = current_user.letters.new(letter_params)
+
 
     if letter.save
       render json: letter, status: :created
@@ -62,6 +64,7 @@ class LettersController < ApplicationController
       :content,
       :sender,
       :recipient,
+      :written_at,
       :deliver_at
     )
   end

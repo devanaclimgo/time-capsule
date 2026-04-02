@@ -15,10 +15,20 @@ export function mapLetter(api: ApiLetter): Letter {
     status = "locked";
   }
 
+  function formatDate(date?: string | null) {
+    if (!date) return "—";
+
+    const parsed = new Date(date);
+
+    if (isNaN(parsed.getTime())) return "—";
+
+    return parsed.toLocaleDateString("pt-BR");
+  }
+
   return {
     id: api.id,
-    writtenDate: new Date(api.written_at).toLocaleDateString("pt-BR"),
-    deliveryDate: new Date(api.deliver_at).toLocaleDateString("pt-BR"),
+    writtenDate: formatDate(api.written_at),
+    deliveryDate: formatDate(api.deliver_at),
     status,
     preview: api.content || "••••••••••••",
   };
