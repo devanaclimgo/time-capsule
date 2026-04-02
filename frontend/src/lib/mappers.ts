@@ -17,7 +17,7 @@ export function mapLetter(api: ApiLetter): Letter {
 
   return {
     id: api.id,
-    writtenDate: new Date(api.deliver_at).toLocaleDateString("pt-BR"),
+    writtenDate: new Date(api.written_at).toLocaleDateString("pt-BR"),
     deliveryDate: new Date(api.deliver_at).toLocaleDateString("pt-BR"),
     status,
     preview: api.content || "••••••••••••",
