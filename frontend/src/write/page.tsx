@@ -12,7 +12,7 @@ export default function WriteLetterPage() {
   const [letterData, setLetterData] = useState({
     from: "",
     to: "",
-    writtenDate: new Date().toISOString().split("T")[0],
+    writtenDate: "",
     deliveryDate: "",
     content: "",
   });
