@@ -15,8 +15,8 @@ class Letter < ApplicationRecord
   def deliver_at_must_be_in_future
     return if deliver_at.blank?
 
-    if deliver_at < 3.days.from_now
-      errors.add(:deliver_at, "must be at least 3 days in the future")
+    if deliver_at < Time.current
+      errors.add(:deliver_at, "must be in the future")
     end
   end
 
