@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :letters
   end
 
-  resources :letters, only: [:create, :index, :show] do
+  resources :letters, only: [:create, :index, :show, :destroy] do
     collection do
       post :send_due
     end
