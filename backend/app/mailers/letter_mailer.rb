@@ -1,11 +1,10 @@
 class LetterMailer < ApplicationMailer
-  default from: 'no-reply@timecapsule.com'
-
   def send_letter(letter)
-    @letter = letter
-    mail(
+    Resend::Emails.send({
+      from: "onboarding@resend.dev",
       to: letter.user.email,
-      subject: "Your Time Capsule Letter 💌"
-    )
+      subject: "Sua carta chegou 💌",
+      html: "<p>#{letter.content}</p>"
+    })
   end
 end
