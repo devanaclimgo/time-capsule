@@ -58,3 +58,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "resend"
 
 gem "sidekiq"
+
+gem "sidekiq-cron"
