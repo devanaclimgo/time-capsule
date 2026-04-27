@@ -57,3 +57,5 @@ gem "letter_opener", "~> 1.10"
 gem "rack-cors"
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "resend"
