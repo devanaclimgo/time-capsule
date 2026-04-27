@@ -57,6 +57,13 @@ class LettersController < ApplicationController
     render json: { message: "Letters sent successfully" }
   end
 
+  # DELETE /letters/:id
+  def destroy
+    letter = current_user.letters.find(params[:id])
+    letter.destroy
+    render json: { message: "Letter deleted successfully" }
+  end
+
   private
 
   def letter_params
