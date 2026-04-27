@@ -1,5 +1,5 @@
-class DeliverLettersJob < ApplicationJob
-  queue_as :default
+class DeliverLettersJob
+  include Sidekiq::Job
 
   def perform
     letters = Letter.where("deliver_at <= ? AND delivered = ?", Time.current, false)
