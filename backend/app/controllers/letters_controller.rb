@@ -8,14 +8,22 @@ class LettersController < ApplicationController
     Rails.logger.info letters.inspect
 
     render json: letters.map { |letter|
+      status =
+        if !letter.delivered && letter.deliver_at > Time.current
+          "scheduled"
+        elsif !letter.delivered
+          "locked"
+        else
+          "sent"
+        end
+
       {
         id: letter.id,
         sender: letter.sender,
         recipient: letter.recipient,
         written_at: letter.created_at.iso8601,
         deliver_at: letter.deliver_at.iso8601,
-        readable_at: letter.readable_at,
-        delivered: letter.delivered,
+        status: status, # 👈 AQUI
         content: letter.readable_at <= Time.current ? letter.content : nil
       }
     }
