@@ -6,4 +6,5 @@ export interface Letter {
   deliveryDate: string;
   status: LetterStatus;
   preview: string;
+  content: string;
 }
