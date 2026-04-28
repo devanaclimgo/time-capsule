@@ -1,11 +1,11 @@
 import { Lock, Clock, Send, Trash } from "lucide-react";
 import type { Letter } from "../types/letter";
 import { apiFetch } from "../lib/api";
+import { useNavigate } from "react-router-dom";
 
 interface LetterCardProps {
   letter: Letter;
   onDelete: (id: string) => void;
-  onOpen: (id: string) => void;
 }
 
 const statusConfig = {
@@ -26,7 +26,8 @@ const statusConfig = {
   },
 };
 
-export function LetterCard({ letter, onDelete, onOpen }: LetterCardProps) {
+export function LetterCard({ letter, onDelete }: LetterCardProps) {
+  const navigate = useNavigate();
   const config = statusConfig[letter.status];
   const StatusIcon = config.icon;
 
@@ -44,15 +45,17 @@ export function LetterCard({ letter, onDelete, onOpen }: LetterCardProps) {
     }
   };
 
+  const handleOpen = () => {
+    navigate(`/letters/${letter.id}`);
+  };
+
   return (
     <article
-      onClick={() => onOpen(letter.id)}
-      className="group relative cursor-pointer bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+      onClick={handleOpen}
+      className="cursor-pointer group relative bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
     >
-      {/* hover line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/30 via-accent/50 to-accent/30 rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity" />
 
-      {/* delete */}
       <button
         onClick={handleDelete}
         className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110"
