@@ -30,6 +30,10 @@ export default function DashboardPage() {
     loadLetters();
   }, []);
 
+  const handleDelete = (id: string) => {
+    setLetters((prev) => prev.filter((l) => l.id !== id));
+  };
+
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-12">
@@ -72,7 +76,7 @@ export default function DashboardPage() {
 
           <div className="space-y-4">
             {letters.map((letter) => (
-              <LetterCard key={letter.id} letter={letter} />
+              <LetterCard key={letter.id} letter={letter} onDelete={handleDelete} />
             ))}
           </div>
 
