@@ -2,14 +2,14 @@ import { type ApiLetter } from "../types/api";
 import { type Letter } from "../types/letter";
 
 export function mapLetter(api: ApiLetter): Letter {
-  const isDelivered = api.delivered;
-  const isReadable = api.content !== null;
+  const now = new Date();
+  const deliverDate = new Date(api.deliver_at);
 
   let status: Letter["status"];
 
-  if (isDelivered) {
+  if (api.delivered) {
     status = "sent";
-  } else if (isReadable) {
+  } else if (deliverDate > now) {
     status = "scheduled";
   } else {
     status = "locked";
