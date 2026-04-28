@@ -1,12 +1,11 @@
 import { Lock, Clock, Send, Trash } from "lucide-react";
 import type { Letter } from "../types/letter";
-import { useState } from "react";
 import { apiFetch } from "../lib/api";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface LetterCardProps {
   letter: Letter;
   onDelete: (id: string) => void;
+  onOpen: (id: string) => void;
 }
 
 const statusConfig = {
@@ -27,8 +26,7 @@ const statusConfig = {
   },
 };
 
-export function LetterCard({ letter, onDelete }: LetterCardProps) {
-  const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null);
+export function LetterCard({ letter, onDelete, onOpen }: LetterCardProps) {
   const config = statusConfig[letter.status];
   const StatusIcon = config.icon;
 
@@ -46,20 +44,15 @@ export function LetterCard({ letter, onDelete }: LetterCardProps) {
     }
   };
 
-  const handleOpen = async () => {
-    try {
-      const data = await apiFetch(`/letters/${letter.id}`);
-
-      setSelectedLetter(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
-    <article className="group relative bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
+    <article
+      onClick={() => onOpen(letter.id)}
+      className="group relative cursor-pointer bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+    >
+      {/* hover line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/30 via-accent/50 to-accent/30 rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity" />
 
+      {/* delete */}
       <button
         onClick={handleDelete}
         className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110"
@@ -67,10 +60,7 @@ export function LetterCard({ letter, onDelete }: LetterCardProps) {
         <Trash className="w-4 h-4 text-muted-foreground hover:text-destructive" />
       </button>
 
-      <div
-        className="flex flex-col sm:flex-row sm:items-start justify-between gap-4"
-        onClick={handleOpen}
-      >
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
         <div className="space-y-3 flex-1">
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
             <span>
@@ -94,40 +84,6 @@ export function LetterCard({ letter, onDelete }: LetterCardProps) {
           {config.label}
         </div>
       </div>
-
-      <AnimatePresence>
-        {selectedLetter && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedLetter(null)}
-          >
-            <motion.div
-              className="bg-card p-6 rounded-xl max-w-lg w-full shadow-xl"
-              initial={{ scale: 0.9, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 40 }}
-              transition={{ duration: 0.2 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h3 className="font-serif text-xl mb-4">Sua carta 💌</h3>
-
-              <p className="text-foreground leading-relaxed whitespace-pre-line">
-                {selectedLetter.content}
-              </p>
-
-              <button
-                onClick={() => setSelectedLetter(null)}
-                className="mt-6 px-4 py-2 bg-primary text-primary-foreground rounded-md"
-              >
-                Fechar
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </article>
   );
 }
