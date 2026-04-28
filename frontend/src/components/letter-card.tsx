@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 interface LetterCardProps {
   letter: Letter;
+  onDelete: (id: string) => void;
 }
 
 const statusConfig = {
@@ -26,7 +27,7 @@ const statusConfig = {
   },
 };
 
-export function LetterCard({ letter }: LetterCardProps) {
+export function LetterCard({ letter, onDelete }: LetterCardProps) {
   const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null);
   const config = statusConfig[letter.status];
   const StatusIcon = config.icon;
@@ -39,7 +40,7 @@ export function LetterCard({ letter }: LetterCardProps) {
         method: "DELETE",
       });
 
-      window.location.reload();
+      onDelete(letter.id);
     } catch (error) {
       console.error(error);
     }
@@ -56,14 +57,14 @@ export function LetterCard({ letter }: LetterCardProps) {
   };
 
   return (
-    <article className="group relative bg-card border border-border rounded-md p-6 shadow-sm hover:shadow-md transition-shadow">
+    <article className="group relative bg-card border border-border rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 hover:-translate-y-1">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/30 via-accent/50 to-accent/30 rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity" />
 
       <button
         onClick={handleDelete}
-        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110"
       >
-        <Trash className="w-5 h-5 text-destructive hover:scale-110 transition-transform" />
+        <Trash className="w-4 h-4 text-muted-foreground hover:text-destructive" />
       </button>
 
       <div
@@ -81,13 +82,13 @@ export function LetterCard({ letter }: LetterCardProps) {
             </span>
           </div>
 
-          <p className="text-foreground line-clamp-2 leading-relaxed">
+          <p className="text-foreground line-clamp-2 leading-relaxed group-hover:text-foreground/80 transition-colors">
             {letter.preview}
           </p>
         </div>
 
         <div
-          className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${config.className}`}
+          className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${config.className}`}
         >
           <StatusIcon className="w-4 h-4" />
           {config.label}
