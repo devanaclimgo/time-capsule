@@ -1,6 +1,7 @@
 import { Lock, Clock, Send, Trash } from "lucide-react";
 import type { Letter } from "../types/letter";
 import { useState } from "react";
+import { apiFetch } from "../lib/api";
 
 interface LetterCardProps {
   letter: Letter;
@@ -33,19 +34,13 @@ export function LetterCard({ letter }: LetterCardProps) {
     e.stopPropagation();
 
     try {
-      const token = localStorage.getItem("token");
-
-      await fetch(`/letters/${letter.id}`, {
+      await apiFetch(`/letters/${letter.id}`, {
         method: "DELETE",
-
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       });
 
       window.location.reload();
     } catch (error) {
-      console.error("Error deleting letter:", error);
+      console.error(error);
     }
   };
 
@@ -75,6 +70,13 @@ export function LetterCard({ letter }: LetterCardProps) {
     <article className="group relative bg-card border border-border rounded-md p-6 shadow-sm hover:shadow-md transition-shadow">
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent/30 via-accent/50 to-accent/30 rounded-t-md opacity-0 group-hover:opacity-100 transition-opacity" />
 
+      <button
+        onClick={handleDelete}
+        className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+      >
+        <Trash className="w-5 h-5 text-destructive hover:scale-110 transition-transform" />
+      </button>
+
       <div
         className="flex flex-col sm:flex-row sm:items-start justify-between gap-4"
         onClick={handleOpen}
@@ -100,12 +102,6 @@ export function LetterCard({ letter }: LetterCardProps) {
         >
           <StatusIcon className="w-4 h-4" />
           {config.label}
-        </div>
-        <div
-          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity"
-          onClick={handleDelete}
-        >
-          <Trash className="w-5 h-5 text-destructive cursor-pointer hover:text-destructive/80 transition-colors" />
         </div>
       </div>
     </article>
