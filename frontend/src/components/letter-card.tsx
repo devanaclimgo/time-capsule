@@ -2,6 +2,7 @@ import { Lock, Clock, Send, Trash } from "lucide-react";
 import type { Letter } from "../types/letter";
 import { useState } from "react";
 import { apiFetch } from "../lib/api";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface LetterCardProps {
   letter: Letter;
@@ -26,7 +27,7 @@ const statusConfig = {
 };
 
 export function LetterCard({ letter }: LetterCardProps) {
-  const [, setSelectedLetter] = useState(null);
+  const [selectedLetter, setSelectedLetter] = useState<Letter | null>(null);
   const config = statusConfig[letter.status];
   const StatusIcon = config.icon;
 
@@ -46,20 +47,8 @@ export function LetterCard({ letter }: LetterCardProps) {
 
   const handleOpen = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const data = await apiFetch(`/letters/${letter.id}`);
 
-      const res = await fetch(`/letters/${letter.id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) {
-        alert("Você ainda não pode ler essa carta 👀");
-        return;
-      }
-
-      const data = await res.json();
       setSelectedLetter(data);
     } catch (err) {
       console.error(err);
@@ -104,6 +93,40 @@ export function LetterCard({ letter }: LetterCardProps) {
           {config.label}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selectedLetter && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedLetter(null)}
+          >
+            <motion.div
+              className="bg-card p-6 rounded-xl max-w-lg w-full shadow-xl"
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 40 }}
+              transition={{ duration: 0.2 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="font-serif text-xl mb-4">Sua carta 💌</h3>
+
+              <p className="text-foreground leading-relaxed whitespace-pre-line">
+                {selectedLetter.content}
+              </p>
+
+              <button
+                onClick={() => setSelectedLetter(null)}
+                className="mt-6 px-4 py-2 bg-primary text-primary-foreground rounded-md"
+              >
+                Fechar
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </article>
   );
 }
